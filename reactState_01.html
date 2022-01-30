@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        function App(){
+            const [counter, setCounter] = React.useState(0)
+            // const x = [1, 2, 3] ---> 간단하고 쉽게 요소들을 꺼서 담고 싶을떄
+            // const [a, b, c] = x 하면 a,b,c에 각각의 숫자가 할당됨.
+            const onClick = () => {
+                setCounter(counter + 1);
+            };
+            
+            return (
+                <div>
+                    <h3>Total clicks: {counter}</h3>
+                    <button onClick={onClick}>Click me</button>
+                </div>
+                );
+        }
+        ReactDOM.render(<App />, root);
+    </script>
+
+</html>
