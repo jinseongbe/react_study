@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script> 
+    <!-- propTypes는 우리가 만든 props에 데이터가 어떤것이 들어갈지 정해주고, 잘못들어갈 경우 오류를 발생시켜주는 라이브러리임!-->
+    <!-- 안전한 코드 사용을 하기 위해 잘 사용 해야 할 것 같음-->
+
+    <script type="text/babel">
+        function Btn({text, fontSize = 30}) { //js 기능으로 기본값을 다음과 같이 줄 수 있음
+            console.log(text, "was rendered") 
+            return (           
+                <button        
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                        margin: "10px",
+                        fontSize: fontSize
+                    }}
+                >{text}
+                </button>
+            )
+        }
+
+        // propTypes 사용법
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired, // .isRequired를 붙이면 꼭 필요하다는 것을 의미함, 없으면 권장정도임
+            fontSize: PropTypes.number,
+        }; // 자세한 자료구조랑 기타 사용법은 해당 홈페이지에서 확인 가능!!
+
+                                             
+        function App(){
+            const [value, setValue] = React.useState("Save Changes");
+
+            return ( 
+                    <div>   
+                        <Btn text={value} fontSize={18} /> 
+                        <Btn text={value + value} /> 
+                    </div>
+                ); 
+        };
+
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+    </script>
+
+</html>

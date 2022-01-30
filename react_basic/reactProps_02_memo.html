@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Btn({text, onClick}) { 
+            console.log(text, "was rendered") // 실행해보면 onClick이 없는 Btn도 다시 render되는 것을 알 수 있음
+            return (           
+                <button        
+                    onClick={onClick}
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                        margin: "10px",
+                    }}
+                >{text}
+                </button>
+            )
+        }
+
+        const MemorizedBtn = React.memo(Btn) // memo를 사용하면 위의 Btn 과는 다르게 변하지 않는 컴포넌트에 대해서는 
+                                             // 다시 render하지 않는다! 최적화를 하는데 중요하니 기억할것!!!!!
+        function App(){
+            const [value, setValue] = React.useState("Save Changes");
+            const changeValue = () => setValue("ReversChange");
+
+            return ( // 아래에 onClick 이벤트 리스너가 아님!! 단지 내가 저렇게 이름을 붙인 props 일뿐 혼동하지 말자.!
+                    <div>   
+                        <Btn text={value} onClick={changeValue}/> 
+                        <Btn text="Continue" />
+
+                        <MemorizedBtn text={value} onClick={changeValue}/> 
+                        <MemorizedBtn text="Continue" />
+
+                    </div>
+                ); 
+        }
+
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+    </script>
+
+</html>
