@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";// Swi
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Report from './pages/Report';
+import Canvas from './pages/Canvas';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/reports' element={<Report />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/canvas' element={<Canvas />} />
       </Routes>
     </Router>
 

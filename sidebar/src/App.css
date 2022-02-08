@@ -14,3 +14,14 @@
   align-items: center;
   font-size: 3rem;
 }
+
+.canvas {
+  overflow:hidden;
+}
+
+.react-p5 {
+  overflow: hidden;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
